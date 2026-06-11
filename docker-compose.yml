@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  backend-ventas:
+    build: ../back-Ventas_SpringBoot/Springboot-API-REST
+    container_name: backend-ventas
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/tienda
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=admin123
+    depends_on:
+      - db
+
+  backend-despachos:
+    build: ../back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO
+    container_name: backend-despachos
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/tienda
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=admin123
+    depends_on:
+      - db
+
+  frontend:
+    build: ../front_despacho
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend-ventas
+      - backend-despachos
+
+  db:
+    image: mysql:8
+    container_name: db
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin123
+      - MYSQL_DATABASE=tienda
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data:
