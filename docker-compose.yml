@@ -4,6 +4,7 @@ services:
   backend-ventas:
     build: ./DevOps_Eva_2_back
     container_name: backend-ventas/Springboot-API-REST
+    dockerfile: Dockerfile
     ports:
       - "8081:8080"
     environment:
@@ -15,7 +16,8 @@ services:
 
   backend-despachos:
     build: ./DevOps_Eva_2_back_despacho/Springboot-API-REST-DESPACHO
-    container_name: backend-despachos
+    container_name: backend-despachos/Springboot-API-REST-DESPACHO
+    dockerfile: Dockerfile
     ports:
       - "8082:8080"
     environment:
@@ -28,6 +30,7 @@ services:
   frontend:
     build: ./DevOps_Eva_2_front
     container_name: frontend
+    dockerfile: Dockerfile
     ports:
       - "3000:80"
     depends_on:
