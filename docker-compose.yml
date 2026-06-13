@@ -14,7 +14,7 @@ services:
       - db
 
   backend-despachos:
-    build: ../back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO
+    build: ../DevOps_Eva_2_back_despacho
     container_name: backend-despachos
     ports:
       - "8082:8080"
@@ -26,7 +26,7 @@ services:
       - db
 
   frontend:
-    build: ../front_despacho
+    build: ../DevOps_Eva_2_front
     container_name: frontend
     ports:
       - "3000:80"
