@@ -2,9 +2,10 @@ version: "3.8"
 
 services:
   backend-ventas:
-    build: ./DevOps_Eva_2_back
-    container_name: backend-ventas/Springboot-API-REST
-    dockerfile: Dockerfile
+    build:
+      context: ./DevOps_Eva_2_back/Springboot-API-REST
+      dockerfile: Dockerfile
+    container_name: backend-ventas
     ports:
       - "8081:8080"
     environment:
@@ -15,9 +16,10 @@ services:
       - db
 
   backend-despachos:
-    build: ./DevOps_Eva_2_back_despacho/Springboot-API-REST-DESPACHO
-    container_name: backend-despachos/Springboot-API-REST-DESPACHO
-    dockerfile: Dockerfile
+    build:
+      context: ./DevOps_Eva_2_back_despacho/Springboot-API-REST-DESPACHO
+      dockerfile: Dockerfile
+    container_name: backend-despachos
     ports:
       - "8082:8080"
     environment:
@@ -28,9 +30,10 @@ services:
       - db
 
   frontend:
-    build: ./DevOps_Eva_2_front
+    build:
+      context: ./DevOps_Eva_2_front
+      dockerfile: Dockerfile
     container_name: frontend
-    dockerfile: Dockerfile
     ports:
       - "3000:80"
     depends_on:
